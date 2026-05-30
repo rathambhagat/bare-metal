@@ -92,5 +92,52 @@ main:
 	.align 8
 4:
 */
+/*At this point, our hello program is a compiled, executable binary sitting on the disk
+. To actually run it, we use a program called a shell
+. The shell is simply a command-line interpreter
+. It prints a prompt, waits for you to type a command (like ./hello), and if it is not a built-in command, it assumes it is an executable file and loads it to run
+.
 
+Hardware Organization of a System To understand how the program runs, you need to know the four main hardware components:
+Buses: These are electrical conduits (wires) running throughout the system that carry fixed-size chunks of data, called words, back and forth between components
+.
+I/O (Input/Output) Devices: These connect the system to the external world
+. Examples include your keyboard and mouse (input), display monitor (output), and the disk drive (storage)
+.
+Main Memory: This is a temporary storage device (made of DRAM chips) that holds both the program and its data while the processor is running it
+. Logically, it is organized as a massive linear array of bytes, each with its own unique address
+.
+The Processor (CPU): This is the engine that interprets and executes instructions
+. Its core component is a register called the Program Counter (PC)
+. The PC always points to the memory address of the next machine-language instruction to be executed
+. The CPU performs simple operations like loading data from memory, storing data, performing math (in the ALU), and jumping to new instructions
+.
+
+Running the hello Program Step-by-Step Here is exactly what happens when you use the hardware to run the code:
+Typing the command: As you type ./hello on the keyboard, the shell reads those characters into a register and then stores them in memory
+.
+Loading the file: When you hit "Enter", the shell knows you are done
+. It then loads the compiled hello file from the disk into the main memory
+. To save time, it often uses a technique called Direct Memory Access (DMA), which allows the data to travel directly from the disk to the main memory without the CPU having to manage the transfer
+.
+Executing and Displaying: Once the code and data are in memory, the processor begins executing the machine-language instructions
+. It copies the bytes representing "hello, world\n" from memory into its registers, and then sends them out to the display device so you can see them on your screen
+.*/
+/*The Problem (The Processor-Memory Gap): A system spends a huge amount of time just moving data around (like from the disk to memory, and memory to the processor)
+. As technology has advanced, processors have become incredibly fast, but main memory hasn't kept up
+. This means the processor often wastes time waiting for data to arrive from memory
+.
+The Solution (Caches): To deal with this delay, system designers add smaller, faster storage devices called cache memories (or just caches) directly onto or near the processor chip
+. Caches act as a temporary staging area for data the processor is likely to need in the near future
+.
+Cache Levels (L1 and L2):
+The L1 cache is very small (tens of thousands of bytes) but lightning-fast—almost as quick as the processor's own internal registers
+.
+The L2 cache is larger (hundreds of thousands to millions of bytes) and is connected by a special bus
+. It is slightly slower than L1, but still 5 to 10 times faster than accessing main memory
+. Both of these caches are built using a fast hardware technology called SRAM (Static Random Access Memory)
+.
+Why Caches Work (Locality): Caches are effective because of a concept called locality
+. This is the tendency for programs to access data and code in small, concentrated areas rather than randomly all over the place
+.*/
 
