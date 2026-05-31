@@ -140,4 +140,15 @@ The L2 cache is larger (hundreds of thousands to millions of bytes) and is conne
 Why Caches Work (Locality): Caches are effective because of a concept called locality
 . This is the tendency for programs to access data and code in small, concentrated areas rather than randomly all over the place
 .*/
-
+/* The Big Picture: A computer system consists of hardware and systems software cooperating to run application programs
+.
+Data and Translation: Information is just a collection of bits, interpreted differently based on their context
+. Programs begin as text and are translated by compilers and linkers into binary executables
+.
+Memory Hierarchy: Storage is organized in a strict hierarchy
+. Faster, smaller devices at the top act as caches for the slower, larger, and cheaper devices at the bottom
+.
+OS Abstractions: The operating system kernel acts as an intermediary using three core abstractions: files (abstracting I/O devices), virtual memory (abstracting main memory and disks), and processes (abstracting the processor, memory, and I/O)
+.
+Networks: Computers communicate via networks, which the system simply treats as just another I/O device
+.*/
