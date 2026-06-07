@@ -7,4 +7,8 @@
 # Bit vectors
 Bit Vectors: The machine doesn't just process one bit at a time. It applies these operations across entire strings of bits (bit vectors) simultaneously, matching up the bits position by position
 
+# Set Encoding 
+Set Encoding: Bit vectors mechanically represent finite sets, where a 1 at a specific position means that element is present, and a 0 means it is absent Because of this, & physically performs set intersection, | performs set union, and ~ performs set complement.
 
+# XOR 
+The XOR Annihilator: XOR mathematically forms a "Boolean ring" where every element is its own additive inverse. Mechanically, this means applying XOR to a value with itself strictly cancels it out to zero ( a ˆ a =0).
