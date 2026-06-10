@@ -68,6 +68,47 @@ B -> Because first and last equal each other, inplace_swap receives two pointers
 C -> You just change the loop condition from first <= last to first < last.The exact middle element of an odd-length array doesn't actually need to move anyway, so stopping the loop right before the pointers overlap prevents the bug entirely.
 
 
+#### **Practice Problem 2.12 (solution page 182)**
+
+Write C expressions, in terms of variable x, for the following values. Your code should work for any word size *w* ≥ 8. For reference, we show the result of evaluating the expressions for x = 0x87654321, with *w* = 32.
+
+- A. The least significant byte of x, with all other bits set to 0. [0x00000021]
+- B. All but the least significant byte of x complemented, with the least significant byte left unchanged. [0x789ABC21]
+
+C. The least significant byte set to all ones, and all other bytes of x left unchanged. [0x876543FF]
+
+##### Solution
+
+A. x & 0xFF This uses AND to keep only the bits where 0xFF has 1s (the lowest byte) and crushes everything else to zero
+
+B. x ^ ~0xFF XORing a bit with 1 flips it, and XORing with 0 leaves it alone.The mask ~0xFF creates a wall of 1s everywhere except the lowest byte, so it flips all the upper bytes and leaves the bottom byte perfectly intact.
+
+C. x | 0xFF ORing a bit with 1 forces it to become 1, while ORing with 0 leaves it alone.This instantly forces the lowest byte to all 1s without touching the rest.
+
+#### **2.1.9 Shift Operations in C**
+
+C also provides a set of *shift* operations for shifting bit patterns to the left and to the right. For an operand x having bit representation [*xw*<sup>−</sup>1*, xw*<sup>−</sup>2*,...,x*0], the C expression x << k yields a value with bit representation [*xw*<sup>−</sup>*k*−1*, xw*<sup>−</sup>*k*−2*,...,x*0*,* 0*,...,* 0]. That is, x is shifted *k* bits to the left, dropping off the *k* most significant bits and filling the right end with *k* zeros. The shift amount should be a value between 0 and *w* − 1. Shift operations associate from left to right, so x << j << k is equivalent to (x << j) << k.
+
+There is a corresponding right shift operation, written in C as x >> k, but it has a slightly subtle behavior. Generally, machines support two forms of right shift:
+
+*Logical.* A logical right shift fills the left end with *k* zeros, giving a result [0*,...,* 0*, xw*<sup>−</sup>1*, xw*<sup>−</sup>2*,...xk*].
+
+*Arithmetic.* An arithmetic right shift fills the left end with *k* repetitions of the most significant bit, giving a result [*xw*<sup>−</sup>1*,...,xw*<sup>−</sup>1*, xw*<sup>−</sup>1*, xw*<sup>−</sup>2*,...xk*]. This convention might seem peculiar, but as we will see, it is useful for operating on signed integer data.
+
+As examples, the following table shows the effect of applying the different shift operations to two different values of an 8-bit argument *x*:
+
+| Operation                    | Value<br>1 | Value<br>2 |
+|------------------------------|------------|------------|
+| Argument<br>x                | [01100011] | [10010101] |
+| x<br><<<br>4                 | [00110000] | [01010000] |
+| x<br>>><br>4<br>(logical)    | [00000110] | [00001001] |
+| x<br>>><br>4<br>(arithmetic) | [00000110] | [11111001] |
+
+The italicized digits indicate the values that fill the right (left shift) or left (right shift) ends. Observe that all but one entry involves filling with zeros. The exception is the case of shifting [10010101] right arithmetically. Since its most significant bit is 1, this will be used as the fill value.
+
+The C standards do not precisely define which type of right shift should be used with signed numbers—either arithmetic or logical shifts may be used. This unfortunately means that any code assuming one form or the other will potentially encounter portability problems. In practice, however, almost all compiler/machine combinations use arithmetic right shifts for signed data, and many programmers assume this to be the case. For unsigned data, on the other hand, right shifts must be logical.
+
+In contrast to C, Java has a precise definition of how right shifts should be performed. The expression x >> k shifts x arithmetically by k positions, while x >>> k shifts it logically.
 
 
 
