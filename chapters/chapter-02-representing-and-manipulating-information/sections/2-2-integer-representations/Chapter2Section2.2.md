@@ -30,6 +30,17 @@ $$B2U_w(\vec{x}) = \sum_{i=0}^{w-1} x_i 2^i$$
 - $B2U_4([1011]) = 11$
 - $B2U_4([1111]) = 15 = 2^4 - 1$
 
+### The Transformation Function ($B2U_w$):
+Unsigned encoding translates a raw bit vector $\vec{x}$ into a non-negative mathematical integer using the strictly defined positional formula $B2U_w(\vec{x}) \doteq \sum_{i=0}^{w-1} x_i 2^i$ 1.
+### Positional Weighting: 
+Each physical bit $x_i$ acts as an independent binary switch. If the bit is $1$, it contributes exactly $2^i$ to the overall decimal sum; if $0$, it contributes nothing 1.
+### Absolute Boundaries:
+The representable range for a $w$-bit unsigned integer is strictly bound between a minimum of $0$ (a vector of all zeros) and a maximum of $UMax_w \doteq 2^w - 1$ (a vector of all ones) 2.
+### The Bijection Principle: 
+$B2U_w$ is mathematically defined as a bijection 3. This guarantees a perfect 1-to-1 relationship: every bit pattern creates a unique decimal number, and every decimal number corresponds to exactly one unique bit pattern 2, 3.
+### The Inverse Function ($U2B_w$): 
+Because it is a bijection, $B2U_w$ has a perfect mathematical inverse called $U2B_w$ (Unsigned to Binary) 3. $U2B_w$ applies the exact same properties in reverse, mapping an integer back to its singular $w$-bit physical vector 3.
+
 ---
 
 ## 2.2.3 Two's-Complement Encodings
