@@ -144,7 +144,7 @@ Building on the process abstraction, we can devise systems where multiple progra
 
 **Multiprocessor systems** have multiple processors under a single operating system kernel.
 
-![Categorizing different processor configurations](./images/_page_23_Figure_8.jpeg)
+![Categorizing different processor configurations](../images/_page_23_Figure_8.jpeg)
 
 **Figure 1.16 — Categorizing different processor configurations**
 
@@ -152,7 +152,7 @@ Building on the process abstraction, we can devise systems where multiple progra
 
 Multi-core processors integrate several CPUs (called "cores") onto a single integrated-circuit chip.
 
-![Multi-core processor organization](./images/_page_24_Figure_1.jpeg)
+![Multi-core processor organization](../images/_page_24_Figure_1.jpeg)
 
 **Figure 1.17 — Multi-core processor organization**
 
@@ -196,7 +196,7 @@ At the lowest level, many modern processors have special hardware allowing a **s
 
 The use of **abstractions** is one of the most important concepts in computer science. A good abstraction provides a simple API that allows programmers to use code without delving into inner workings.
 
-![Some abstractions provided by a computer system](./images/_page_26_Figure_2.jpeg)
+![Some abstractions provided by a computer system](../images/_page_26_Figure_2.jpeg)
 
 **Figure 1.18 — Some abstractions provided by a computer system**
 

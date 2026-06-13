@@ -2,7 +2,7 @@
 
 The notion of inserting a smaller, faster storage device between the processor and a larger, slower device turns out to be a general idea. Storage devices in every computer system are organized as a **memory hierarchy**.
 
-![An example of a memory hierarchy](./images/_page_13_Figure_0.jpeg)
+![An example of a memory hierarchy](../images/_page_13_Figure_0.jpeg)
 
 **Figure 1.9 — An example of a memory hierarchy**
 

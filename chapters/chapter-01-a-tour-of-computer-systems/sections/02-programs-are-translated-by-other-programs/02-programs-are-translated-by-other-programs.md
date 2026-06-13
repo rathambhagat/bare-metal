@@ -10,7 +10,7 @@ On a Unix system, the translation from source file to object file is performed b
 linux> gcc -o hello hello.c
 ```
 
-![The compilation system](./images/_page_4_Figure_0.jpeg)
+![The compilation system](../images/_page_4_Figure_0.jpeg)
 
 **Figure 1.3 — The compilation system**
 

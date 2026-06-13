@@ -12,7 +12,7 @@ The shell is a command-line interpreter that prints a prompt, waits for you to t
 
 ## 1.4.1 Hardware Organization of a System
 
-![Hardware organization of a typical system](./images/_page_7_Figure_2.jpeg)
+![Hardware organization of a typical system](../images/_page_7_Figure_2.jpeg)
 
 **Figure 1.4 — Hardware organization of a typical system.** CPU: central processing unit, ALU: arithmetic/logic unit, PC: program counter, USB: Universal Serial Bus.
 
@@ -75,7 +75,7 @@ Modern processors use far more complex mechanisms than the simple sequential mod
 
 Initially, the shell program is executing its instructions, waiting for us to type a command. As we type `./hello` at the keyboard, the shell program reads each character into a register and then stores it in memory.
 
-![Reading the hello command from the keyboard](./images/_page_10_Figure_1.jpeg)
+![Reading the hello command from the keyboard](../images/_page_10_Figure_1.jpeg)
 
 **Figure 1.5 — Reading the hello command from the keyboard**
 
@@ -83,7 +83,7 @@ Initially, the shell program is executing its instructions, waiting for us to ty
 
 When we hit Enter, the shell knows we have finished typing the command. The shell loads the executable `hello` file by executing a sequence of instructions that copies the code and data from disk to main memory. Using a technique known as **direct memory access (DMA)**, the data travel directly from disk to main memory without passing through the processor.
 
-![Loading the executable from disk into main memory](./images/_page_11_Figure_0.jpeg)
+![Loading the executable from disk into main memory](../images/_page_11_Figure_0.jpeg)
 
 **Figure 1.6 — Loading the executable from disk into main memory**
 
@@ -91,6 +91,6 @@ When we hit Enter, the shell knows we have finished typing the command. The shel
 
 Once the code and data are loaded into memory, the processor begins executing the machine-language instructions in `hello`'s `main` routine. These instructions copy the bytes in the `"hello, world\n"` string from memory to the register file, and from there to the display device.
 
-![Writing the output string from memory to the display](./images/_page_11_Figure_2.jpeg)
+![Writing the output string from memory to the display](../images/_page_11_Figure_2.jpeg)
 
 **Figure 1.7 — Writing the output string from memory to the display**

@@ -13,7 +13,7 @@ From the point of view of an individual system, the network can be viewed as jus
 
 Consider using the `telnet` application to run `hello` on a remote machine:
 
-![Using telnet to run hello remotely over a network](./images/_page_20_Figure_0.jpeg)
+![Using telnet to run hello remotely over a network](../images/_page_20_Figure_0.jpeg)
 
 **Figure 1.15 — Using telnet to run hello remotely over a network**
 

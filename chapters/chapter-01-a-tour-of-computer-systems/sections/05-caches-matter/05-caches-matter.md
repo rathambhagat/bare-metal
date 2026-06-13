@@ -27,7 +27,7 @@ Even more troublesome, as semiconductor technology progresses, the **processor-m
 
 To deal with the processor-memory gap, system designers include smaller, faster storage devices called **cache memories** (or simply **caches**) that serve as temporary staging areas for information the processor is likely to need in the near future.
 
-![Cache memories](./images/_page_12_Figure_1.jpeg)
+![Cache memories](../images/_page_12_Figure_1.jpeg)
 
 **Figure 1.8 — Cache memories**
 

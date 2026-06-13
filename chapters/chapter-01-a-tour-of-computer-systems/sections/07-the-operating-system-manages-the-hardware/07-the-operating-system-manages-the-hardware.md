@@ -2,7 +2,7 @@
 
 When the shell loaded and ran the `hello` program, and when `hello` printed its message, neither program accessed the keyboard, display, disk, or main memory directly. Instead, they relied on the services provided by the **operating system**.
 
-![Layered view of a computer system](./images/_page_14_Figure_1.jpeg)
+![Layered view of a computer system](../images/_page_14_Figure_1.jpeg)
 
 **Figure 1.10 — Layered view of a computer system**
 
@@ -15,7 +15,7 @@ The operating system is a layer of software interposed between the application p
 
 ## Three Fundamental Abstractions
 
-![Abstractions provided by an operating system](./images/_page_14_Figure_3.jpeg)
+![Abstractions provided by an operating system](../images/_page_14_Figure_3.jpeg)
 
 **Figure 1.11 — Abstractions provided by an operating system**
 
@@ -40,7 +40,7 @@ The **context** includes all state information the process needs to run:
 - The register file
 - Contents of main memory
 
-![Process context switching](./images/_page_16_Figure_1.jpeg)
+![Process context switching](../images/_page_16_Figure_1.jpeg)
 
 **Figure 1.12 — Process context switching**
 
@@ -82,7 +82,7 @@ In modern systems, a process can actually consist of multiple execution units ca
 
 **Virtual memory** is an abstraction that provides each process with the illusion that it has exclusive use of main memory. Each process has the same uniform view of memory, known as its **virtual address space**.
 
-![Process virtual address space](./images/_page_17_Figure_1.jpeg)
+![Process virtual address space](../images/_page_17_Figure_1.jpeg)
 
 **Figure 1.13 — Process virtual address space**
 

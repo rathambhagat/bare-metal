@@ -6,7 +6,7 @@ Our `hello` program begins life as a *source program* (or *source file*) that a 
 
 Most computer systems represent text characters using the **ASCII standard**, which represents each character with a unique byte-size integer value. For example, the first byte of `hello.c` has the integer value 35, which corresponds to `'#'`. The second byte has the value 105, corresponding to `'i'`. Each text line is terminated by the invisible *newline* character `'\n'`, represented by the integer value 10.
 
-![ASCII representation of hello.c](./images/_page_4_Figure_0.jpeg)
+![ASCII representation of hello.c](../images/_page_4_Figure_0.jpeg)
 
 **Figure 1.2 — The ASCII text representation of hello.c**
 
