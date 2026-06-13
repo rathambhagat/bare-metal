@@ -53,6 +53,20 @@ $$B2T_w(\vec{x}) = -x_{w-1}2^{w-1} + \sum_{i=0}^{w-2} x_i 2^i$$
 - Range: $TMin_w = -2^{w-1}$ to $TMax_w = 2^{w-1} - 1$
 - $B2T_w$ is a bijection.
 - Asymmetry: $|TMin| = |TMax| + 1$ (e.g., for w=4: -8 to 7, not -7 to 7).
+- The two's-complement range is asymmetric: |*TMin*| = |*TMax*| + 1; that is, there is no positive counterpart to *TMin*.
+- This asymmetry arises because half the bit patterns (those with the sign bit set to 1) represent negative numbers, while half (those with the sign bit set to 0) represent nonnegative numbers. Since 0 is nonnegative, this means that it can represent one less positive number than negative. Second, the maximum unsigned value is just over twice the maximum two's-complement value: *UMax* = 2*TMax* + 1. All of the bit patterns that denote negative numbers in two's-complement notation become positive values in an unsigned representation.
+
+|       |      |         | Word<br>size   | w                          |
+|-------|------|---------|----------------|----------------------------|
+| Value | 8    | 16      | 32             | 64                         |
+| UMaxw | 0xFF | 0xFFFF  | 0xFFFFFFFF     | 0xFFFFFFFFFFFFFFFF         |
+|       | 255  | 65,535  | 4,294,967,295  | 18,446,744,073,709,551,615 |
+| TMinw | 0x80 | 0x8000  | 0x80000000     | 0x8000000000000000         |
+|       | −128 | −32,768 | −2,147,483,648 | −9,223,372,036,854,775,808 |
+| TMaxw | 0x7F | 0x7FFF  | 0x7FFFFFFF     | 0x7FFFFFFFFFFFFFFF         |
+|       | 127  | 32,767  | 2,147,483,647  | 9,223,372,036,854,775,807  |
+| −1    | 0xFF | 0xFFFF  | 0xFFFFFFFF     | 0xFFFFFFFFFFFFFFFF         |
+| 0     | 0x00 | 0x0000  | 0x00000000     | 0x0000000000000000         |
 
 **Examples (w = 4):**
 - $B2T_4([0001]) = 1$
