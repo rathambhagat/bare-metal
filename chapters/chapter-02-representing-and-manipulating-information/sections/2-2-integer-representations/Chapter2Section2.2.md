@@ -95,6 +95,8 @@ $$B2T_w(\vec{x}) = -x_{w-1}2^{w-1} + \sum_{i=0}^{w-2} x_i 2^i$$
 
 Almost all modern machines use two's complement.
 
+The file <limits.h> in the C library defines a set of constants
+
 ---
 
 ## 2.2.4 Conversions Between Signed and Unsigned
