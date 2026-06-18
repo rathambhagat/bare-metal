@@ -97,6 +97,18 @@ Almost all modern machines use two's complement.
 
 The file <limits.h> in the C library defines a set of constants
 
+To get a better understanding of the two's-complement representation, consider the following code example:
+
+```
+1 short x = 12345;
+2 short mx = -x;
+3
+4 show_bytes((byte_pointer) &x, sizeof(short));
+5 show_bytes((byte_pointer) &mx, sizeof(short));
+```
+```
+```
+
 ---
 
 ## 2.2.4 Conversions Between Signed and Unsigned
