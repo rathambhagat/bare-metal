@@ -435,3 +435,4 @@ int strlonger(char *s, char *t) {
 ```
 
 The direct comparison approach is cleaner and avoids any risk of overflow.
+
