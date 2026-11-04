@@ -43,4 +43,36 @@ The function copy\_from\_kernel, starting at line 14, is designed to copy some o
 Suppose, however, that some malicious programmer writes code that calls copy\_from\_kernel with a negative value of maxlen. Then the minimum computation on line 16 will compute this value for len, which will then be passed as the parameter n to memcpy. Note, however, that parameter n is declared as having data type size\_t. This data type is declared (via typedef) in the library file stdio.h. Typically, it is defined to be unsigned for 32-bit programs and unsigned long for 64-bit programs. Since argument n is unsigned, memcpy will treat it as a very large positive number and attempt to copy that many bytes from the kernel region to the user's buffer. Copying that many bytes (at least 231) will not actually work, because the program will encounter invalid addresses in the process, but the program could read regions of the kernel memory for which it is not authorized.
 We can see that this problem arises due to the mismatch between data types: in one place the length parameter is signed; in another place it is unsigned. Such mismatches can be a source of bugs and, as this example shows, can even lead to security vulnerabilities. Fortunately, there were no reported cases where a programmer had exploited the vulnerability in FreeBSD. They issued a security advisory "FreeBSD-SA-02:38.signed-error" advising system administrators on how to apply a patch that would remove the vulnerability. The bug can be fixed by declaring parameter maxlen to copy\_from\_kernel to be of type size\_t, to be consistent with parameter n of memcpy. We should also declare local variable len and the return value to be of type size\_t.
 
+### PRINCIPLE: Detecting overflow of unsigned addition
 
+For x and y in the range  $0 \le x$ ,  $y \le UMax_w$ , let  $s = x +_w^u y$ . Then the computation of s overflowed if and only if s < x (or equivalently, s < y).
+
+#### Practice Problem 2.27 (solution page 188)
+
+Write a function with the following prototype:
+```
+/* Determine whether arguments can be added without overflow */
+int uadd_ok(unsigned x, unsigned y);
+```
+Solution
+```
+int uadd_ok(unsigned x, unsigned y){
+unsigned sum = x+y;
+return sum >= x;
+}
+```
+### **PRINCIPLE:** Unsigned negation
+
+For any number x such that  $0 \le x < 2^w$ , its w-bit unsigned negation  $-\frac{u}{w} x$  is given by the following:
+
+$$-\frac{u}{w}x = \begin{cases} x, & x = 0\\ 2^w - x, & x > 0 \end{cases}$$
+
+## 2.3.2 Two's Complement Addition
+
+ Given integer values x and y in the range  $-2^{w-1} \le x$ ,  $y \le 2^{w-1} - 1$ , their sum is in the range  $-2^w \le x + y \le 2^w - 2$ , potentially requiring w + 1 bits to represent exactly. As before, we avoid ever-expanding data sizes by truncating the representation to w bits.
+
+### **PRINCIPLE:** Two's-complement addition
+
+For integer values x and y in the range  $-2^{w-1} \le x$ ,  $y \le 2^{w-1} - 1$ :
+
+$$x +_{w}^{t} y = \begin{cases} x + y - 2^{w}, & 2^{w-1} \le x + y & \text{Positive overflow} \\ x + y, & -2^{w-1} \le x + y < 2^{w-1} & \text{Normal} \\ x + y + 2^{w}, & x + y < -2^{w-1} & \text{Negative overflow} \end{cases}$$
