@@ -13,4 +13,4 @@
 | 1.7 | The Operating System Manages the Hardware | `sections/07-the-operating-system-manages-the-hardware/07-the-operating-system-manages-the-hardware.md` |
 | 1.8 | Systems Communicate with Other Systems Using Networks | `sections/08-systems-communicate-with-other-systems-using-networks/08-systems-communicate-with-other-systems-using-networks.md` |
 | 1.9 | Important Themes | `sections/09-important-themes/09-important-themes.md` |
-| 1.10 | Summary | `sections/10-summary/10-summary.md` |
+| 1.10 | Summary | `sections/10-summary/10-summary.md` | 
