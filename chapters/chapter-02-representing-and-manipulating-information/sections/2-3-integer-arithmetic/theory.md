@@ -790,4 +790,64 @@ For x and y such that  $0 \le x$ ,  $y \le UMax_w$ :
 
 $$x *_{w}^{u} y = (x \cdot y) \mod 2^{w}$$
 
+## 2.3.5 Two's complement Multiplication
+
+**PRINCIPLE:** Two's-complement multiplication
+
+For x and y such that  $TMin_w \le x$ ,  $y \le TMax_w$ :
+
+$$x *_{w}^{t} y = U2T_{w}((x \cdot y) \bmod 2^{w})$$
+
+**PRINCIPLE**: Bit-level equivalence of unsigned and two's-complement multiplication
+
+Let  $\vec{x}$  and  $\vec{y}$  be bit vectors of length w. Define integers x and y as the values represented by these bits in two's-complement form:  $x = B2T_w(\vec{x})$  and  $y = B2T_w(\vec{y})$ . Define nonnegative integers x' and y' as the values represented by these bits in unsigned form:  $x' = B2U_w(\vec{x})$  and  $y' = B2U_w(\vec{y})$ . Then
+
+$$T2B_w(x *_w^{\mathsf{t}} y) = U2B_w(x' *_w^{\mathsf{u}} y')$$
+
+### **Practice Problem 2.35 (solution page 190)**
+
+You are given the assignment to develop code for a function tmult\_ok that will determine whether two arguments can be multiplied without causing overflow. Here is your solution:
+
+```
+/* Determine whether arguments can be multiplied without overflow */
+int tmult_ok(int x, int y) {
+    int p = x*y;
+    /* Either x is zero, or dividing p by x gives y */
+    return !x || p/x == y;
+}
+```
+
+You test this code for a number of values of x and y, and it seems to work properly. Your coworker challenges you, saying, "If I can't use subtraction to test whether addition has overflowed (see Problem 2.31), then how can you use division to test whether multiplication has overflowed?"
+
+Devise a mathematical justification of your approach, along the following lines. First, argue that the case *x* = 0 is handled correctly. Otherwise, consider *w*-bit numbers *x* (*x* = 0), *y*, *p*, and *q*, where *p* is the result of performing two'scomplement multiplication on *x* and *y*, and *q* is the result of dividing *p* by *x*.
+
+- **1.** Show that *x . y*, the integer product of *x* and *y*, can be written in the form *x . y* = *p* + *t*2*w*, where *t* = 0 if and only if the computation of *p* overflows.
+- **2.** Show that *p* can be written in the form *p* = *x . q* + *r*, where |*r*| *<* |*x*|.
+- **3.** Show that *q* = *y* if and only if *r* = *t* = 0.
+
+## 2.3.6 Multiplying by Constants
+
+
+**Principle**: Multiplication by a power of 2
+
+Let *x* be the unsigned integer represented by bit pattern [*xw*<sup>−</sup>1*, xw*<sup>−</sup>2*,...,x*0]. Then for any *k* ≥ 0, the *w* + *k*-bit unsigned representation of *x*2*<sup>k</sup>* is given by [*xw*<sup>−</sup>1*, xw*<sup>−</sup>2*,...,x*0*,* 0*,...,* 0], where *k* zeros have been added to the right.
+
+So, for example, 11 can be represented for *w* = 4 as [1011]. Shifting this left by *k* = 2 yields the 6-bit vector [101100], which encodes the unsigned number 11 *.* 4 = 44.
+
+**PRINCIPLE:** Unsigned multiplication by a power of 2
+
+For C variables x and k with unsigned values x and k, such that  $0 \le k < w$ , the C expression x << k yields the value  $x *_w^u 2^k$ .
+
+Since the bit-level operation of fixed-size two's-complement arithmetic is equivalent to that for unsigned arithmetic, we can make a similar statement about the relationship between left shifts and multiplication by a power of 2 for two's-complement arithmetic:
+
+**PRINCIPLE:** Two's-complement multiplication by a power of 2
+
+For C variables x and k with two's-complement value x and unsigned value k, such that  $0 \le k < w$ , the C expression x << k yields the value  $x *_w^t 2^k$ .
+
+Note that multiplying by a power of 2 can cause overflow with either unsigned or two's-complement arithmetic. Our result shows that even then we will get the same effect by shifting. Returning to our earlier example, we shifted the 4-bit pattern [1011] (numeric value 11) left by two positions to get [101100] (numeric value 44). Truncating this to 4 bits gives [1100] (numeric value 12 = 44 mod 16).
+
+Given that integer multiplication is more costly than shifting and adding, many C compilers try to remove many cases where an integer is being multiplied by a constant with combinations of shifting, adding, and subtracting. For example, suppose a program contains the expression x\*14. Recognizing that  $14 = 2^3 + 2^2 + 2^1$ , the compiler can rewrite the multiplication as (x<<3) + (x<<2) + (x<<1), replacing one multiplication with three shifts and two additions. The two computations will yield the same result, regardless of whether x is unsigned or two's complement, and even if the multiplication would cause an overflow. Even better, the compiler can also use the property  $14 = 2^4 - 2^1$  to rewrite the multiplication as (x<<4) - (x<<1), requiring only two shifts and a subtraction.
+
+## 2.3.7 Dividing by power of 2
+
 
